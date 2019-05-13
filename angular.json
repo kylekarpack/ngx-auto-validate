@@ -7,7 +7,7 @@
       "root": "projects/ngx-auto-validate",
       "sourceRoot": "projects/ngx-auto-validate/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "av",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -58,7 +58,8 @@
               "projects/ngx-auto-validate-tester/src/assets"
             ],
             "styles": [
-              "projects/ngx-auto-validate-tester/src/styles.css"
+              "projects/ngx-auto-validate-tester/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

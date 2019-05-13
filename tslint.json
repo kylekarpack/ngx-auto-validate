@@ -1,75 +1,74 @@
 {
-  "extends": "tslint:recommended",
-  "rulesDirectory": [
-    "codelyzer"
-  ],
-  "rules": {
-    "array-type": false,
-    "arrow-parens": false,
-    "deprecation": {
-      "severity": "warn"
-    },
-    "import-blacklist": [
-      true,
-      "rxjs/Rx"
-    ],
-    "interface-name": false,
-    "max-classes-per-file": false,
-    "max-line-length": [
-      true,
-      140
-    ],
-    "member-access": false,
-    "member-ordering": [
-      true,
-      {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
-      }
-    ],
-    "no-consecutive-blank-lines": false,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "no-empty": false,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
-    "no-non-null-assertion": true,
-    "no-redundant-jsdoc": true,
-    "no-switch-case-fall-through": true,
-    "no-use-before-declare": true,
-    "no-var-requires": false,
-    "object-literal-key-quotes": [
-      true,
-      "as-needed"
-    ],
-    "object-literal-sort-keys": false,
-    "ordered-imports": false,
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "trailing-comma": false,
-    "no-output-on-prefix": true,
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
-    "use-life-cycle-interface": true,
-    "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
-    "directive-class-suffix": true
-  }
+	"rules": {
+		"max-line-length": {
+			"options": [
+				140
+			]
+		},
+		"semicolon": true,
+		"quotemark": [
+			true,
+			"double",
+			"avoid-escape"
+		],
+		"jsdoc-format": [true, "check-multiline-start"],
+		"prefer-template": true,
+		"whitespace": [
+			true,
+			"check-branch",
+			"check-decl"
+		],
+		"comment-format": [
+			true,
+			"check-space",
+			{
+				"ignore-words": "html"
+			}
+		],
+		"comment-type": [
+			true,
+			"doc",
+			"singleline",
+			"multiline"
+		],
+		"triple-equals": [
+			true,
+			"allow-null-check",
+			"allow-undefined-check"
+		],
+		"use-isnan": true,
+		"indent": [
+			true,
+			"tabs"
+		],
+		"no-switch-case-fall-through": true,
+		"no-var-keyword": true,
+		"new-parens": true,
+		"no-arg": true,
+		"no-conditional-assignment": true,
+		"no-consecutive-blank-lines": false,
+		"no-debugger": true,
+		"curly": true,
+		"no-construct": true,
+		"no-duplicate-variable": true,
+		"no-eval": true,
+		"space-before-function-paren": false,
+		"one-line": [
+			true,
+			"check-else",
+			"check-open-brace",
+			"check-whitespace"
+		],
+		"no-console": {
+			"severity": "default",
+			"options": [
+				"debug",
+				"info",
+				"log",
+				"time",
+				"timeEnd",
+				"trace"
+			]
+		}
+	}
 }
