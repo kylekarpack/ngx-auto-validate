@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-auto-validate": [
+        "dist/ngx-auto-validate"
+      ],
+      "ngx-auto-validate/*": [
+        "dist/ngx-auto-validate/*"
+      ]
+    }
   }
 }

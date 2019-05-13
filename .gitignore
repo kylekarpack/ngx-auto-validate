@@ -44,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/projects/ngx-auto-validate-tester
+/projects/ngx-auto-validate-tester-e2e

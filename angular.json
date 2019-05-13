@@ -2,5 +2,170 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ngx-auto-validate": {
+      "root": "projects/ngx-auto-validate",
+      "sourceRoot": "projects/ngx-auto-validate/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-auto-validate/tsconfig.lib.json",
+            "project": "projects/ngx-auto-validate/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-auto-validate/src/test.ts",
+            "tsConfig": "projects/ngx-auto-validate/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-auto-validate/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-auto-validate/tsconfig.lib.json",
+              "projects/ngx-auto-validate/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-auto-validate-tester": {
+      "root": "projects/ngx-auto-validate-tester/",
+      "sourceRoot": "projects/ngx-auto-validate-tester/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-auto-validate-tester",
+            "index": "projects/ngx-auto-validate-tester/src/index.html",
+            "main": "projects/ngx-auto-validate-tester/src/main.ts",
+            "polyfills": "projects/ngx-auto-validate-tester/src/polyfills.ts",
+            "tsConfig": "projects/ngx-auto-validate-tester/tsconfig.app.json",
+            "assets": [
+              "projects/ngx-auto-validate-tester/src/favicon.ico",
+              "projects/ngx-auto-validate-tester/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-auto-validate-tester/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-auto-validate-tester/src/environments/environment.ts",
+                  "with": "projects/ngx-auto-validate-tester/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-auto-validate-tester:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-auto-validate-tester:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-auto-validate-tester:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-auto-validate-tester/src/test.ts",
+            "polyfills": "projects/ngx-auto-validate-tester/src/polyfills.ts",
+            "tsConfig": "projects/ngx-auto-validate-tester/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-auto-validate-tester/karma.conf.js",
+            "styles": [
+              "projects/ngx-auto-validate-tester/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/ngx-auto-validate-tester/src/favicon.ico",
+              "projects/ngx-auto-validate-tester/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-auto-validate-tester/tsconfig.app.json",
+              "projects/ngx-auto-validate-tester/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-auto-validate-tester-e2e": {
+      "root": "projects/ngx-auto-validate-tester-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ngx-auto-validate-tester-e2e/protractor.conf.js",
+            "devServerTarget": "ngx-auto-validate-tester:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-auto-validate-tester:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/ngx-auto-validate-tester-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ngx-auto-validate"
 }
