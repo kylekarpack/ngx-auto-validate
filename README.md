@@ -21,12 +21,12 @@ Import this library in your ```app.module.ts```:
 import { NgxAutoValidateModule } from "ngx-auto-validate";
 
 @NgModule({
-	...
-	imports: [
-		ReactiveFormsModule,
+    ...
+    imports: [
+        ReactiveFormsModule,
         NgxAutoValidateModule,
         ...
-	]
+    ]
 })
 export class AppModule { }
 
