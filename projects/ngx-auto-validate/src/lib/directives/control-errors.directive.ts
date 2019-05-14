@@ -32,37 +32,15 @@ export class ControlErrorsDirective {
 
 	ngOnInit() {
 
+		// Trigger on control value changes or form submission
 		merge(
 			this.submit$,
 			this.control.valueChanges
 		).pipe(
-			untilDestroyed(this)).subscribe(() => {
-				const controlErrors = this.control.errors;
-				if (controlErrors) {
-					const firstKey = Object.keys(controlErrors)[0],
-						getError = this.errors[firstKey];
-					
-					let text = "Error";
-					if (getError) {
-						if (typeof getError === "string") {
-							text = getError;
-						} else if (typeof getError === "function") {
-							text = getError(controlErrors[firstKey]);
-						} else if (getError == null) {
-							return;
-						}
-					}
-
-					// Add :invalid pseudo class
-					this.elementRef.nativeElement.setCustomValidity("Invalid");
-					this.setError(text);
-				} else if (this.ref) {
-
-					// Add :valid pseudo class
-					this.elementRef.nativeElement.setCustomValidity("");
-					this.setError(null);
-				}
-			});
+			untilDestroyed(this)
+		).subscribe(() => {
+			this.setValidation();
+		});
 	}
 
 	ngOnDestroy() {
@@ -76,5 +54,33 @@ export class ControlErrorsDirective {
 		}
 
 		this.ref.instance.text = text;
+	}
+
+	private setValidation(): void {
+		const controlErrors = this.control.errors;
+		if (controlErrors) {
+			const firstKey = Object.keys(controlErrors)[0],
+				getError = this.errors[firstKey];
+			
+			let text = "Error";
+			if (getError) {
+				if (typeof getError === "string") {
+					text = getError;
+				} else if (typeof getError === "function") {
+					text = getError(controlErrors[firstKey]);
+				} else if (getError == null) {
+					return;
+				}
+			}
+
+			// Add :invalid pseudo class
+			this.elementRef.nativeElement.setCustomValidity("Invalid");
+			this.setError(text);
+		} else if (this.ref) {
+
+			// Add :valid pseudo class
+			this.elementRef.nativeElement.setCustomValidity("");
+			this.setError(null);
+		}
 	}
 }
