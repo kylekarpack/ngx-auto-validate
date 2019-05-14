@@ -62,7 +62,7 @@ export class ControlErrorsDirective {
 			const firstKey = Object.keys(controlErrors)[0],
 				getError = this.errors[firstKey];
 			
-			let text = "Error";
+			let text = "Validation error";
 			if (getError) {
 				if (typeof getError === "string") {
 					text = getError;
