@@ -7,13 +7,30 @@ import { FormSubmitDirective } from "./directives/form-submit.directive";
 import { Config } from "./interfaces/config.interface";
 
 @NgModule({
-	declarations: [ControlErrorsDirective, FormSubmitDirective, ControlErrorComponent, ControlErrorContainerDirective],
+	entryComponents: [
+		ControlErrorComponent
+	],
+	declarations: [
+		ControlErrorsDirective, 
+		FormSubmitDirective, 
+		ControlErrorComponent, 
+		ControlErrorContainerDirective
+	],
 	imports: [],
-	exports: [ControlErrorsDirective, FormSubmitDirective, ControlErrorComponent, ControlErrorContainerDirective],
-	entryComponents: [ControlErrorComponent]
+	exports: [
+		ControlErrorsDirective, 
+		FormSubmitDirective, 
+		ControlErrorComponent, 
+		ControlErrorContainerDirective
+	]
 })
 export class NgxAutoValidateModule { 
-
+	
+	/**
+	 * Construct an instance of this module with the specified configuration
+	 * @param  {Config={errors:{}}} config
+	 * @returns ModuleWithProviders
+	 */
 	static forRoot(config: Config = { errors: {} }): ModuleWithProviders {
 		return {
 			ngModule: NgxAutoValidateModule,

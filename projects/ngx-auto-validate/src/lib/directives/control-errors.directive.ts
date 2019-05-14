@@ -14,7 +14,7 @@ import { FormSubmitDirective } from "./form-submit.directive";
 export class ControlErrorsDirective {
 
 	submit$: Observable<any>;
-	ref: ComponentRef<ControlErrorComponent>;
+	errorsContainer: ComponentRef<ControlErrorComponent>;
 	container: any;
 
 	constructor(
@@ -47,15 +47,24 @@ export class ControlErrorsDirective {
 		// Implemented to satisfy untilDestroyed
 	}
 
-	setError(text: string) {
-		if (!this.ref) {
+	/**
+	 * Set the error text that should be showing
+	 * @param text
+	 * @returns void
+	 */
+	private setError(text: string): void {
+		if (!this.errorsContainer) {
 			const factory = this.resolver.resolveComponentFactory(ControlErrorComponent);
-			this.ref = this.viewContainer.createComponent(factory);
+			this.errorsContainer = this.viewContainer.createComponent(factory);
 		}
 
-		this.ref.instance.text = text;
+		this.errorsContainer.instance.text = text;
 	}
 
+	/**
+	 * Set validation state when something changes
+	 * @returns void
+	 */
 	private setValidation(): void {
 		const controlErrors = this.control.errors;
 		if (controlErrors) {
@@ -76,7 +85,7 @@ export class ControlErrorsDirective {
 			// Add :invalid pseudo class
 			this.elementRef.nativeElement.setCustomValidity("Invalid");
 			this.setError(text);
-		} else if (this.ref) {
+		} else if (this.errorsContainer) {
 
 			// Add :valid pseudo class
 			this.elementRef.nativeElement.setCustomValidity("");
