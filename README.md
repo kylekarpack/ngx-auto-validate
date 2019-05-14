@@ -21,11 +21,17 @@ Import this library in your ```app.module.ts```:
 import { NgxAutoValidateModule } from "ngx-auto-validate";
 
 @NgModule({
-    ...
+    // ...
     imports: [
         ReactiveFormsModule,
-        NgxAutoValidateModule,
-        ...
+        NgxAutoValidateModule.forRoot({
+            errors: {
+                errorType: "Error text"
+                // ex. required: "This field is required"
+                // ...
+            }
+        }),
+        // ...
     ]
 })
 export class AppModule { }
@@ -34,5 +40,5 @@ export class AppModule { }
 
 ## ToDo:
 * Add additional validation types
-* Add parameters for customization
+* Add additional parameters for customization
 * Add NPM package
