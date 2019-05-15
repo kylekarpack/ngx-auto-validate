@@ -20,7 +20,8 @@ export class AppComponent {
 		max: ["", Validators.max(5)],
 		email: ["", Validators.email],
 		pattern: ["", Validators.pattern(/^[a-z]*$/)],
-		checkboxRequired: ["", Validators.requiredTrue]
+		checkboxRequired: ["", Validators.requiredTrue],
+		radio: ["", Validators.required]
 	});
 
 }
