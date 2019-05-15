@@ -1,5 +1,5 @@
 // tslint:disable-next-line:max-line-length
-import { ComponentFactoryResolver, ComponentRef, Directive, ElementRef, Host, Inject, Optional, Self, ViewContainerRef } from "@angular/core";
+import { ComponentFactoryResolver, ComponentRef, Directive, ElementRef, Host, Inject, Optional, Self, ViewContainerRef, Renderer2 } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { EMPTY, merge, Observable } from "rxjs";
@@ -13,21 +13,20 @@ import { FormSubmitDirective } from "./form-submit.directive";
 })
 export class ControlErrorsDirective {
 
-	submit$: Observable<any>;
-	errorsContainer: ComponentRef<ControlErrorComponent>;
-	container: any;
+	private submit$: Observable<any>;
+	private errorsContainer: ComponentRef<ControlErrorComponent>;
 
 	constructor(
 		@Inject("config") private errors: ErrorsConfig, // Get module configuration
 		@Self() private control: NgControl,	// Get this control
 		@Optional() @Host() private form: FormSubmitDirective, // Get parent form
+		@Optional() @Host() private controlErrorContainer: ControlErrorContainerDirective, // Get parent form group
 		private viewContainer: ViewContainerRef,
 		private resolver: ComponentFactoryResolver,
-		@Optional() controlErrorContainer: ControlErrorContainerDirective,
-		private elementRef: ElementRef
+		private elementRef: ElementRef,
+		private renderer: Renderer2
 	) {
 		this.submit$ = this.form ? this.form.submit$ : EMPTY;
-		this.container = controlErrorContainer ? controlErrorContainer.vcr : viewContainer;
 	}
 
 	ngOnInit() {
@@ -48,14 +47,26 @@ export class ControlErrorsDirective {
 	}
 
 	/**
+	 * Create a container component for the errors if it doesn't exist
 	 * Set the error text that should be showing
 	 * @param text
 	 * @returns void
 	 */
 	private setError(text: string): void {
+		// Create the container if needed
 		if (!this.errorsContainer) {
 			const factory = this.resolver.resolveComponentFactory(ControlErrorComponent);
+
+			// Create errors container
 			this.errorsContainer = this.viewContainer.createComponent(factory);
+
+			// Add to end of parent container if specified
+			if (this.controlErrorContainer && this.controlErrorContainer.viewContainer) {
+				this.renderer.appendChild(
+					this.controlErrorContainer.viewContainer.element.nativeElement,
+					this.errorsContainer.injector.get(ControlErrorComponent).elementRef.nativeElement
+				);
+			}
 		}
 
 		this.errorsContainer.instance.text = text;
@@ -70,7 +81,7 @@ export class ControlErrorsDirective {
 		if (controlErrors) {
 			const firstKey = Object.keys(controlErrors)[0],
 				getError = this.errors[firstKey];
-			
+
 			let text = "Validation error";
 			if (getError) {
 				if (typeof getError === "string") {

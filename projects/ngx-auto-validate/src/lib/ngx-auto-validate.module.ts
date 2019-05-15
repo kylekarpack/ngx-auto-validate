@@ -11,16 +11,16 @@ import { Config } from "./interfaces/config.interface";
 		ControlErrorComponent
 	],
 	declarations: [
-		ControlErrorsDirective, 
-		FormSubmitDirective, 
-		ControlErrorComponent, 
+		ControlErrorsDirective,
+		FormSubmitDirective,
+		ControlErrorComponent,
 		ControlErrorContainerDirective
 	],
 	imports: [],
 	exports: [
-		ControlErrorsDirective, 
-		FormSubmitDirective, 
-		ControlErrorComponent, 
+		ControlErrorsDirective,
+		FormSubmitDirective,
+		ControlErrorComponent,
 		ControlErrorContainerDirective
 	]
 })

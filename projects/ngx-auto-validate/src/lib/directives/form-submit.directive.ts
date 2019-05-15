@@ -24,8 +24,6 @@ export class FormSubmitDirective {
 	
 	/**
 	 * Handle form submission
-	 * @param  {HTMLFormElement} this.element
-	 * @param  {string} "submit"
 	 */
 	public submit$ = fromEvent(this.element, "submit")
 		.pipe(tap(() => {
