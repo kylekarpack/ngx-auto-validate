@@ -13,6 +13,7 @@ export class AppComponent {
 
 	public form = this.formBuilder.group({
 		required: ["", Validators.required],
+		requiredAndMinLength: ["", [Validators.required, Validators.minLength(5)]],
 		minLength: ["", Validators.minLength(5)],
 		maxLength: ["", Validators.maxLength(5)],
 		min: ["", Validators.min(5)],
