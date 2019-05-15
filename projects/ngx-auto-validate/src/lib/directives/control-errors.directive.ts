@@ -55,21 +55,35 @@ export class ControlErrorsDirective {
 	private setError(text: string): void {
 		// Create the container if needed
 		if (!this.errorsContainer) {
+
+			// Create the component
 			const factory = this.resolver.resolveComponentFactory(ControlErrorComponent);
 
-			// Create errors container
+			// Create errors container (also adds to DOM)
 			this.errorsContainer = this.viewContainer.createComponent(factory);
 
 			// Add to end of parent container if specified
 			if (this.controlErrorContainer && this.controlErrorContainer.viewContainer) {
-				this.renderer.appendChild(
-					this.controlErrorContainer.viewContainer.element.nativeElement,
-					this.errorsContainer.injector.get(ControlErrorComponent).elementRef.nativeElement
-				);
+
+				const parent = this.controlErrorContainer.viewContainer.element.nativeElement,
+					child = this.errorsContainer.injector.get(ControlErrorComponent).elementRef.nativeElement;
+
+				this.renderer.appendChild(parent, child);
+
+				// ToDo: this is not very tidy
+				if (this.controlErrorContainer.validationInitialized) {
+					this.renderer.removeChild(parent, child);
+				}
+
+				// Tell the container that it contains validation
+				this.controlErrorContainer.validationInitialized = true;
 			}
 		}
 
-		this.errorsContainer.instance.text = text;
+		if (this.errorsContainer) {
+			this.errorsContainer.instance.text = text;
+		}
+
 	}
 
 	/**

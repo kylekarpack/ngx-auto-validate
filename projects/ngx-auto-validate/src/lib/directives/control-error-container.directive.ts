@@ -5,6 +5,8 @@ import { Directive, ViewContainerRef } from "@angular/core";
 })
 export class ControlErrorContainerDirective {
 
+	public validationInitialized: boolean = false;
+
 	constructor(public viewContainer: ViewContainerRef) { }
 
 }
