@@ -5,7 +5,6 @@ ngx-auto-validate is a validation module for Angular that favors dynamic element
 Inspired by https://netbasal.com/make-your-angular-forms-error-messages-magically-appear-1e32350b7fa5 and https://jonsamwell.github.io/angular-auto-validate
 
 ## Installation
-### NOTE: This package is not yet avaliable on npm
 ```
 npm install ngx-auto-validate
 ```
@@ -41,4 +40,4 @@ export class AppModule { }
 ## ToDo:
 * Add additional validation types
 * Add additional parameters for customization
-* Add NPM package
+* Currently works only with Bootstrap 4 DOM structure
