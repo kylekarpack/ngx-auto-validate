@@ -24,7 +24,7 @@ export const FORM_ERRORS = new InjectionToken("FORM_ERRORS", {
 
 /**
  * Merge form errors injection token
- * @param  {ErrorsConfig} errors?
+ * @param errors?
  * @returns ErrorsConfig
  */
 export const provideFormErrors = (errors?: ErrorsConfig): ErrorsConfig => {
