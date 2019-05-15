@@ -1,8 +1,8 @@
-import { Component, Input, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input } from "@angular/core";
 
 // ToDo: take validation class as a parameter
 @Component({
-	template: `<p class="text-danger" [class.hide]="hide">{{ text }}</p>`,
+	template: `<p class="text-danger small" [class.hide]="hide">{{ text }}</p>`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControlErrorComponent {
@@ -10,7 +10,10 @@ export class ControlErrorComponent {
 	private _text: string;
 	private _hide: boolean = true;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) { }
+	constructor(
+		private changeDetectorRef: ChangeDetectorRef,
+		public elementRef: ElementRef
+	) { }
 	
 	/**
 	 * Gets current value of the "hide" property 

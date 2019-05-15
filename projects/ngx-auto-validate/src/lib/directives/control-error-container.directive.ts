@@ -1,10 +1,12 @@
 import { Directive, ViewContainerRef } from "@angular/core";
 
 @Directive({
-	selector: "[controlErrorContainer]"
+	selector: ".form-group" // ToDo: Make this customizable
 })
 export class ControlErrorContainerDirective {
 
-	constructor(public vcr: ViewContainerRef) { }
+	public validationInitialized: boolean = false;
+
+	constructor(public viewContainer: ViewContainerRef) { }
 
 }

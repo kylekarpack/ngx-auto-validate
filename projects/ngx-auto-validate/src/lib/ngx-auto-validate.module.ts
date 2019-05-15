@@ -11,16 +11,16 @@ import { Config } from "./interfaces/config.interface";
 		ControlErrorComponent
 	],
 	declarations: [
-		ControlErrorsDirective, 
-		FormSubmitDirective, 
-		ControlErrorComponent, 
+		ControlErrorsDirective,
+		FormSubmitDirective,
+		ControlErrorComponent,
 		ControlErrorContainerDirective
 	],
 	imports: [],
 	exports: [
-		ControlErrorsDirective, 
-		FormSubmitDirective, 
-		ControlErrorComponent, 
+		ControlErrorsDirective,
+		FormSubmitDirective,
+		ControlErrorComponent,
 		ControlErrorContainerDirective
 	]
 })
@@ -28,7 +28,7 @@ export class NgxAutoValidateModule {
 	
 	/**
 	 * Construct an instance of this module with the specified configuration
-	 * @param  {Config={errors:{}}} config
+	 * @param config
 	 * @returns ModuleWithProviders
 	 */
 	static forRoot(config: Config = { errors: {} }): ModuleWithProviders {

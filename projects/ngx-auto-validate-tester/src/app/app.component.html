@@ -1,0 +1,72 @@
+<div class="container">
+	<h2 class="page-header">NGX Auto Validate Demo Page</h2>
+
+	<form [formGroup]="form" novalidate>
+		<div class="form-group">
+			<label class="control-label">Required Input</label>
+			<input type="text" class="form-control" formControlName="required" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Required Min Length 5</label>
+			<input type="text" class="form-control" formControlName="requiredAndMinLength" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Min Length 5</label>
+			<input type="text" class="form-control" formControlName="minLength" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Max Length 5</label>
+			<input type="text" class="form-control" formControlName="maxLength" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Numeric Input Min 5</label>
+			<input type="number" class="form-control" formControlName="min" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Numeric Input Max 5</label>
+			<input type="number" class="form-control" formControlName="max" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Email</label>
+			<input type="email" class="form-control" formControlName="email" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Pattern</label>
+			<input type="text" class="form-control" formControlName="pattern" />
+		</div>
+
+		<div class="form-group">
+			<div class="custom-control custom-checkbox mb-3">
+				<input class="custom-control-input" id="check" type="checkbox" [value]="true"
+					formControlName="checkboxRequired" />
+				<label class="custom-control-label" for="check">Required checkbox</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="custom-control custom-radio">
+				<input type="radio" class="custom-control-input" id="customControlValidation2" [value]="true"
+					formControlName="radio">
+				<label class="custom-control-label" for="customControlValidation2">
+					Toggle this custom radio
+				</label>
+			</div>
+			<div class="custom-control custom-radio mb-3">
+				<input type="radio" class="custom-control-input" id="customControlValidation3" [value]="false"
+					formControlName="radio">
+				<label class="custom-control-label" for="customControlValidation3">
+					Or toggle this other custom radio
+				</label>
+			</div>
+		</div>
+
+		<input type="submit" value="Submit" class="btn btn-light" />
+	</form>
+</div>
