@@ -10,7 +10,7 @@
 		"npm-pack": "cd dist/ngx-auto-validate && npm pack",
 		"package": "npm run build && npm run copy-files && npm run npm-pack"
 	},
-	"private": true,
+	"private": false,
 	"dependencies": {
 		"@angular/animations": "~7.2.0",
 		"@angular/common": "~7.2.0",
