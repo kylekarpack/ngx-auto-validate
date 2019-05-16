@@ -1,5 +1,5 @@
 // tslint:disable-next-line:max-line-length
-import { ComponentFactoryResolver, ComponentRef, Directive, ElementRef, Host, Inject, Optional, Renderer2, Self, ViewContainerRef } from "@angular/core";
+import { ComponentFactoryResolver, ComponentRef, Directive, ElementRef, Host, Inject, Optional, Renderer2, Self, ViewContainerRef, Input } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { EMPTY, merge, Observable } from "rxjs";
@@ -17,6 +17,8 @@ export class ControlErrorsDirective {
 	private submit$: Observable<any>;
 	private errorsContainer: ComponentRef<ControlErrorComponent>;
 
+	@Input("avNoValidate") noValidate: boolean | string;
+
 	constructor(
 		@Inject(AV_CONFIG) private config: Config, // Get module configuration
 		@Self() private control: NgControl,	// Get this control
@@ -31,6 +33,10 @@ export class ControlErrorsDirective {
 	}
 
 	ngOnInit() {
+
+		if (this.noValidate === true || this.noValidate === "" || (this.form && this.form.noValidate)) { // Kind of a hacky solution
+			return;
+		}
 
 		// Trigger on control value changes or form submission
 		merge(
