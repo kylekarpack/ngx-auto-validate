@@ -1,13 +1,13 @@
 // tslint:disable-next-line:max-line-length
-import { ComponentFactoryResolver, ComponentRef, Directive, ElementRef, Host, Inject, Optional, Self, ViewContainerRef, Renderer2 } from "@angular/core";
+import { ComponentFactoryResolver, ComponentRef, Directive, ElementRef, Host, Inject, Optional, Renderer2, Self, ViewContainerRef } from "@angular/core";
 import { NgControl } from "@angular/forms";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { EMPTY, merge, Observable } from "rxjs";
 import { ControlErrorComponent } from "../components/control-error/control-error.component";
-import { ErrorsConfig } from "../interfaces/config.interface";
+import { AV_CONFIG } from "../config/config.config";
+import { Config } from "../interfaces/config.interface";
 import { ControlErrorContainerDirective } from "./control-error-container.directive";
 import { FormSubmitDirective } from "./form-submit.directive";
-import { FORM_ERRORS } from "../config/form-errors.config";
 
 @Directive({
 	selector: "[formControl], [formControlName]"
@@ -18,7 +18,7 @@ export class ControlErrorsDirective {
 	private errorsContainer: ComponentRef<ControlErrorComponent>;
 
 	constructor(
-		@Inject(FORM_ERRORS) private errors: ErrorsConfig, // Get module configuration
+		@Inject(AV_CONFIG) private config: Config, // Get module configuration
 		@Self() private control: NgControl,	// Get this control
 		@Optional() @Host() private form: FormSubmitDirective, // Get parent form
 		@Optional() @Host() private controlErrorContainer: ControlErrorContainerDirective, // Get parent form group
@@ -95,9 +95,9 @@ export class ControlErrorsDirective {
 		const controlErrors = this.control.errors;
 		if (controlErrors) {
 			const firstKey = Object.keys(controlErrors)[0],
-				getError = this.errors[firstKey];
+				getError = this.config.errors[firstKey];
 
-			let text = "Validation error";
+			let text = this.config.text.defaultError;
 			if (getError) {
 				if (typeof getError === "string") {
 					text = getError;

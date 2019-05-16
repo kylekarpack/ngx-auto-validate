@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Inject, Input } from "@angular/core";
+import { AV_CONFIG } from "../../config/config.config";
+import { Config } from "../../interfaces/config.interface";
 
-// ToDo: take validation class as a parameter
 @Component({
-	template: `<p class="text-danger small" [class.hide]="hide">{{ text }}</p>`,
+	template: `<p [class]="config.classes.validationMessage" [class.hide]="hide">{{ text }}</p>`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControlErrorComponent {
@@ -11,6 +12,7 @@ export class ControlErrorComponent {
 	private _hide: boolean = true;
 
 	constructor(
+		@Inject(AV_CONFIG) public config: Config, // Get module configuration
 		private changeDetectorRef: ChangeDetectorRef,
 		public elementRef: ElementRef
 	) { }

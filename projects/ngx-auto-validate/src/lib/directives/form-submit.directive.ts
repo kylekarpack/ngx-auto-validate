@@ -1,13 +1,18 @@
-import { Directive, ElementRef } from "@angular/core";
+import { Directive, ElementRef, Inject } from "@angular/core";
 import { fromEvent } from "rxjs";
 import { shareReplay, tap } from "rxjs/operators";
+import { AV_CONFIG } from "../config/config.config";
+import { Config } from "../interfaces/config.interface";
 
 @Directive({
 	selector: "form"
 })
 export class FormSubmitDirective {
 
-	constructor(private host: ElementRef<HTMLFormElement>) { }
+	constructor(
+		@Inject(AV_CONFIG) private config: Config, // Get module configuration
+		private host: ElementRef<HTMLFormElement>
+	) { }
 
 	/**
 	 * Get the form element
@@ -18,8 +23,7 @@ export class FormSubmitDirective {
 	}
 
 	ngOnInit() {
-		// ToDo: take initial class as a parameter
-		this.element.classList.add("needs-validation");
+		this.element.classList.add(this.config.classes.formNeedsValidation);
 	}
 	
 	/**
@@ -28,8 +32,8 @@ export class FormSubmitDirective {
 	public submit$ = fromEvent(this.element, "submit")
 		.pipe(tap(() => {
 			// ToDo: take validation class as a parameter
-			if (!this.element.classList.contains("was-validated")) {
-				this.element.classList.add("was-validated");
+			if (!this.element.classList.contains(this.config.classes.formWasValidated)) {
+				this.element.classList.add(this.config.classes.formWasValidated);
 			}
 		}), shareReplay(1));
 
