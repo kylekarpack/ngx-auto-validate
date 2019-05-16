@@ -31,7 +31,7 @@ export class NgxAutoValidateModule {
 	 * @param config
 	 * @returns ModuleWithProviders
 	 */
-	static forRoot(config: Config = { errors: {} }): ModuleWithProviders {
+	static forRoot(config: Config = {}): ModuleWithProviders {
 		return {
 			ngModule: NgxAutoValidateModule,
 			providers: [

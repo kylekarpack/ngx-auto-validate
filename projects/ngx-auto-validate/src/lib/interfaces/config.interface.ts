@@ -12,9 +12,9 @@ export interface TextsConfig {
 }
 
 export interface ClassesConfig {
-	element?: string;
-	container?: string;
 	validationMessage?: string;
+	formNeedsValidation?: string;
+	formWasValidated?: string;
 	[key: string]: string;
 }
 

@@ -8,7 +8,9 @@ import { defaultErrors } from "./form-errors.config";
 export const defaultConfig: Config = {
 	errors: defaultErrors,
 	classes: {
-		validationMessage: "text-danger small"
+		validationMessage: "text-danger small",
+		formNeedsValidation: "needs-validation",
+		formWasValidated: "was-validated"
 	},
 	text: {
 		defaultError: "Validation error"
