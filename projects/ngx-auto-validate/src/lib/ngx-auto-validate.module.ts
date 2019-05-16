@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { ControlErrorComponent } from "./components/control-error/control-error.component";
-import { DEFAULT_FORM_ERRORS, FORM_ERRORS, provideFormErrors } from "./config/form-errors.config";
+import { AV_CONFIG, DEFAULT_AV_CONFIG, provideConfig } from "./config/config.config";
 import { ControlErrorContainerDirective } from "./directives/control-error-container.directive";
 import { ControlErrorsDirective } from "./directives/control-errors.directive";
 import { FormSubmitDirective } from "./directives/form-submit.directive";
@@ -35,14 +35,16 @@ export class NgxAutoValidateModule {
 		return {
 			ngModule: NgxAutoValidateModule,
 			providers: [
+				// Get default auto validate configuration
 				{ 
-					provide: DEFAULT_FORM_ERRORS, 
-					useValue: config.errors 
+					provide: DEFAULT_AV_CONFIG, 
+					useValue: config 
 				},
+				// And use that default config to build the meged config
 				{ 
-					provide: FORM_ERRORS, 
-					useFactory: provideFormErrors,
-					deps: [DEFAULT_FORM_ERRORS]
+					provide: AV_CONFIG, 
+					useFactory: provideConfig, // merges configurations
+					deps: [DEFAULT_AV_CONFIG]
 				}
 			]
 		};
