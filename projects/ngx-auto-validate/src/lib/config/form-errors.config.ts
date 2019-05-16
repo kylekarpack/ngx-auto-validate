@@ -17,7 +17,7 @@ export const defaultErrors: ErrorsConfig = {
 /**
  * Form errors injection token
  */
-export const FORM_ERRORS = new InjectionToken("FORM_ERRORS", {
+export const DEFAULT_FORM_ERRORS = new InjectionToken("DEFAULT_FORM_ERRORS", {
 	providedIn: "root",
 	factory: () => defaultErrors
 });
@@ -33,3 +33,11 @@ export const provideFormErrors = (errors?: ErrorsConfig): ErrorsConfig => {
 		...errors
 	};
 };
+
+/**
+ * Processed form errors injection token
+ */
+export const FORM_ERRORS = new InjectionToken("FORM_ERRORS", {
+	providedIn: "root",
+	factory: () => defaultErrors
+});

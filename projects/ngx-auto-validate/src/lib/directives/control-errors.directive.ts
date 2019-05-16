@@ -7,6 +7,7 @@ import { ControlErrorComponent } from "../components/control-error/control-error
 import { ErrorsConfig } from "../interfaces/config.interface";
 import { ControlErrorContainerDirective } from "./control-error-container.directive";
 import { FormSubmitDirective } from "./form-submit.directive";
+import { FORM_ERRORS } from "../config/form-errors.config";
 
 @Directive({
 	selector: "[formControl], [formControlName]"
@@ -17,7 +18,7 @@ export class ControlErrorsDirective {
 	private errorsContainer: ComponentRef<ControlErrorComponent>;
 
 	constructor(
-		@Inject("config") private errors: ErrorsConfig, // Get module configuration
+		@Inject(FORM_ERRORS) private errors: ErrorsConfig, // Get module configuration
 		@Self() private control: NgControl,	// Get this control
 		@Optional() @Host() private form: FormSubmitDirective, // Get parent form
 		@Optional() @Host() private controlErrorContainer: ControlErrorContainerDirective, // Get parent form group

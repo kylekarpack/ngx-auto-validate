@@ -12,7 +12,11 @@ import { AppComponent } from "./app.component";
 	imports: [
 		BrowserModule,
 		ReactiveFormsModule,
-		NgxAutoValidateModule.forRoot()
+		NgxAutoValidateModule.forRoot({
+			errors: {
+				required: "Edited required message"
+			}
+		})
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { ControlErrorComponent } from "./components/control-error/control-error.component";
-import { FORM_ERRORS, provideFormErrors } from "./config/form-errors.config";
+import { DEFAULT_FORM_ERRORS, FORM_ERRORS, provideFormErrors } from "./config/form-errors.config";
 import { ControlErrorContainerDirective } from "./directives/control-error-container.directive";
 import { ControlErrorsDirective } from "./directives/control-errors.directive";
 import { FormSubmitDirective } from "./directives/form-submit.directive";
@@ -36,13 +36,13 @@ export class NgxAutoValidateModule {
 			ngModule: NgxAutoValidateModule,
 			providers: [
 				{ 
-					provide: FORM_ERRORS, 
+					provide: DEFAULT_FORM_ERRORS, 
 					useValue: config.errors 
 				},
 				{ 
-					provide: "config", 
+					provide: FORM_ERRORS, 
 					useFactory: provideFormErrors,
-					deps: [FORM_ERRORS]
+					deps: [DEFAULT_FORM_ERRORS]
 				}
 			]
 		};
