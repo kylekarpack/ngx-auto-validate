@@ -49,3 +49,4 @@ export class AppModule { }
 * Add additional validation types
 * Currently works best with Bootstrap 4 DOM structure
 * Add customization strategies
+* Integrate with more validators (i.e. https://www.npmjs.com/package/ng2-validation)
