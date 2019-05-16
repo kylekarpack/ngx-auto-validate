@@ -28,7 +28,15 @@ import { NgxAutoValidateModule } from "ngx-auto-validate";
                 errorType: "Error text"
                 // ex. required: "This field is required"
                 // ...
-            }
+			}, 
+			classes: {
+				validationMessage: "text-danger small"
+				// ...
+			},
+			texts: {
+				defaultError: "Validation error",
+				// ...
+			}
         }),
         // ...
     ]
@@ -39,5 +47,5 @@ export class AppModule { }
 
 ## ToDo:
 * Add additional validation types
-* Add additional parameters for customization
-* Currently works only with Bootstrap 4 DOM structure
+* Currently works best with Bootstrap 4 DOM structure
+* Add customization strategies

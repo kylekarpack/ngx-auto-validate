@@ -14,7 +14,10 @@ import { AppComponent } from "./app.component";
 		ReactiveFormsModule,
 		NgxAutoValidateModule.forRoot({
 			errors: {
-				required: "Edited required message"
+				required: () => "Edited required message"
+			},
+			classes: {
+				validationMessage: "text-muted small"
 			}
 		})
 	],

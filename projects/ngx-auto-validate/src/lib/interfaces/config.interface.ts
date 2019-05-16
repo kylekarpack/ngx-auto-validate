@@ -7,7 +7,7 @@ export interface ErrorsConfig {
 }
 
 export interface TextsConfig {
-	defaultErrors?: string;
+	defaultError?: string;
 	[key: string]: string;
 }
 
