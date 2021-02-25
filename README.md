@@ -1,4 +1,5 @@
-
+## Not Maintained
+This library is not maintained and may not work with newer versions of Angular
 
 # ngx-auto-validate
 
@@ -19,31 +20,33 @@ yarn add ngx-auto-validate
 
 Import this library in your ```app.module.ts```:
 ```typescript
-import { NgxAutoValidateModule } from "ngx-auto-validate";
+import {
+	NgxAutoValidateModule
+} from "ngx-auto-validate";
 
 @NgModule({
-    // ...
-    imports: [
-        ReactiveFormsModule,
-        NgxAutoValidateModule.forRoot({
-            errors: {
-                errorType: "Error text"
-                // ex. required: "This field is required"
-                // ...
-			      }, 
-			      classes: {
-				      validationMessage: "text-danger small"
-				      // ...
-			      },
-			      texts: {
-			      	defaultError: "Validation error",
-			      	// ...
-		      	}
-        }),
-        // ...
-    ]
+	// ...
+	imports: [
+		ReactiveFormsModule,
+		NgxAutoValidateModule.forRoot({
+			errors: {
+				errorType: "Error text"
+				// ex. required: "This field is required"
+				// ...
+			},
+			classes: {
+				validationMessage: "text-danger small"
+				// ...
+			},
+			texts: {
+				defaultError: "Validation error",
+				// ...
+			}
+		}),
+		// ...
+	]
 })
-export class AppModule { }
+export class AppModule {}
 
 ```
 
