@@ -1,3 +1,5 @@
+
+
 # ngx-auto-validate
 
 ngx-auto-validate is a validation module for Angular that favors dynamic element modification to show client-side validation errors. It's a good solution for large forms or applications where writing out all validation combinations could result in excess HTML in your templates.
@@ -28,15 +30,15 @@ import { NgxAutoValidateModule } from "ngx-auto-validate";
                 errorType: "Error text"
                 // ex. required: "This field is required"
                 // ...
-			}, 
-			classes: {
-				validationMessage: "text-danger small"
-				// ...
-			},
-			texts: {
-				defaultError: "Validation error",
-				// ...
-			}
+			      }, 
+			      classes: {
+				      validationMessage: "text-danger small"
+				      // ...
+			      },
+			      texts: {
+			      	defaultError: "Validation error",
+			      	// ...
+		      	}
         }),
         // ...
     ]
