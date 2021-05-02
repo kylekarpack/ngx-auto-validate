@@ -24,7 +24,7 @@
 		"core-js": "^2.6.12",
 		"ngx-bootstrap": "^4.3.0",
 		"ngx-take-until-destroy": "^5.4.0",
-		"rxjs": "~6.6.6",
+		"rxjs": "~6.6.7",
 		"tslib": "^1.14.1",
 		"zone.js": "~0.11.4"
 	},
